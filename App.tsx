@@ -13,6 +13,8 @@ import DatabaseSchema from './components/DatabaseSchema';
 
 const App: React.FC = () => {
   const [activeView, setActiveView] = useState<ViewType>('Dashboard');
+  const [currentUserRole, setCurrentUserRole] = useState<Staff['role']>('Admin');
+  
   const [branches, setBranches] = useState<Branch[]>([
     { id: '1', name: 'Dhaka Main', location: 'Gulshan', manager: 'Rahim Khan', revenue: 45000 },
     { id: '2', name: 'Chittagong Hub', location: 'Agrabad', manager: 'Karim Ahmed', revenue: 32000 },
@@ -47,7 +49,7 @@ const App: React.FC = () => {
       case 'Sales':
         return <SalesRecord sales={sales} branches={branches} />;
       case 'Staff':
-        return <StaffList staff={staff} branches={branches} setStaff={setStaff} />;
+        return <StaffList staff={staff} branches={branches} setStaff={setStaff} currentUserRole={currentUserRole} />;
       case 'AI-Insights':
         return <AIInsights data={{ branches, inventory, sales }} />;
       case 'Database':
@@ -59,9 +61,13 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
-      <Sidebar activeView={activeView} setActiveView={setActiveView} />
+      <Sidebar activeView={activeView} setActiveView={setActiveView} currentUserRole={currentUserRole} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header activeView={activeView} />
+        <Header 
+          activeView={activeView} 
+          currentUserRole={currentUserRole} 
+          setCurrentUserRole={setCurrentUserRole} 
+        />
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
           {renderContent()}
         </main>

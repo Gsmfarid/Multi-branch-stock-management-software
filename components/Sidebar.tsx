@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { ViewType } from '../types';
+import { ViewType, Staff } from '../types';
 
 interface SidebarProps {
   activeView: ViewType;
   setActiveView: (view: ViewType) => void;
+  currentUserRole: Staff['role'];
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeView, setActiveView }) => {
+const Sidebar: React.FC<SidebarProps> = ({ activeView, setActiveView, currentUserRole }) => {
   const menuItems: { name: ViewType; icon: string }[] = [
     { name: 'Dashboard', icon: 'fa-chart-line' },
     { name: 'Branches', icon: 'fa-store' },
@@ -42,10 +43,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, setActiveView }) => {
       </nav>
       <div className="p-4 border-t border-indigo-800">
         <div className="flex items-center space-x-3 bg-indigo-800 p-3 rounded-lg">
-          <img src="https://picsum.photos/40/40" className="w-10 h-10 rounded-full border-2 border-indigo-500" alt="Admin" />
+          <img src={`https://picsum.photos/seed/${currentUserRole}/40/40`} className="w-10 h-10 rounded-full border-2 border-indigo-500" alt="User" />
           <div className="overflow-hidden">
-            <p className="text-xs font-semibold truncate">Admin User</p>
-            <p className="text-[10px] text-indigo-400">System Root</p>
+            <p className="text-xs font-semibold truncate">Current User</p>
+            <p className="text-[10px] text-indigo-400 uppercase tracking-wider font-bold">{currentUserRole}</p>
           </div>
         </div>
       </div>

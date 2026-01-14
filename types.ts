@@ -31,6 +31,14 @@ export interface Staff {
   name: string;
   role: 'Manager' | 'Cashier' | 'Stock' | 'Admin';
   phone: string;
+  avatarUrl?: string;
+  metrics?: {
+    performanceScore: number; // 0-100
+    primaryMetricValue: number;
+    primaryMetricLabel: string;
+    secondaryMetricValue: number;
+    secondaryMetricLabel: string;
+  };
 }
 
 export type ViewType = 'Dashboard' | 'Branches' | 'Inventory' | 'Sales' | 'Staff' | 'AI-Insights' | 'Database';

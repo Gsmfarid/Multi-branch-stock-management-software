@@ -2,7 +2,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 export const getBusinessAdvice = async (data: any) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+  // Always use a named parameter and direct process.env.API_KEY
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const prompt = `
     Analyze the following multi-branch business data and provide 3-4 actionable insights in Bengali and English.
@@ -18,6 +19,7 @@ export const getBusinessAdvice = async (data: any) => {
         systemInstruction: "You are a world-class business consultant specialized in retail management systems."
       }
     });
+    // Use the .text property directly
     return response.text;
   } catch (error) {
     console.error("Gemini Error:", error);
