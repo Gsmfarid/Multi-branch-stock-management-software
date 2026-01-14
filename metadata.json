@@ -1,0 +1,7 @@
+{
+  "name": "OmniBranch Pro",
+  "description": "A sophisticated multi-branch management system featuring inventory control, sales tracking, staff management, and AI-powered business insights.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
